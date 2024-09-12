@@ -22,9 +22,12 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
-    - name: Install flake8  # Hinzufügen dieses Schritts, falls nicht in requirements.txt
+    - name: Install flake8
       run: |
         pip install flake8
+    - name: Install pytest
+      run: |
+        pip install pytest
     - name: Run Jupyter Notebook
       run: |
         jupyter nbconvert --to notebook --execute titanic_analysis.ipynb --output executed_notebook.ipynb
@@ -32,3 +35,6 @@ jobs:
       run: flake8 .
     - name: Format with black
       run: black . --check
+    - name: Run Tests
+      run: |
+        pytest
